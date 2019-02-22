@@ -1,0 +1,34 @@
+<body>
+    <div id="app">
+        {{ary}}
+        <button @click='fn'>按钮1</button>
+        <button @click='fn(name,$event)'>按钮2</button>
+        <!-- $event是固定写法，代表传参事件对象 -->
+    </div>
+</body>
+
+</html>
+<!-- <script src="./node/node_modules/vue/dist/vue.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    //事件绑定，用v-on：事件类型=‘函数’  或者  @事件类型=‘函数’
+    //函数一般是在methods中定义的
+    //对应的函数一般不带小括号，默认传参事件对象e
+    //当我们需要传参时，需要加小括号,小括号里写需要传的参数；当只有小括号没有传参时，为undefined
+    //el data methods 都是VUE规定死的属性名 
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            ary: [1, 2, 3, 4],
+            name: 'liu'
+        },
+        methods: {
+            fn: function (val, e) {
+                alert(val, e, this)
+                console.log(val, e, this)
+            }
+        }
+    })
+    //@kryup.13='fn'在按下回车的时候才会触发该函数
+</script>
