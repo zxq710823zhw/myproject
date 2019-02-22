@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <aaa></aaa>
+        <aaa></aaa>
+        <my-name></my-name>
+        <!-- 不支持驼峰式命名 -->
+
+    </div>
+</body>
+<template id='qqq'>
+    <div>
+        <input type="text" v-model='name'>
+        <h1>
+            <i>{{name}}</i>
+        </h1>
+    </div>
+</template>
+
+<script>
+    //全局组件的定义
+    //使用时只要把组件名当作标签使用即可
+    Vue.component('aaa', {
+        //没有el属性，有template属性，data是个函数，并且返回一个对象
+        //template就是qqq标签要去展示的内容
+        //template有且只能有一个根元素
+        template: '#qqq',
+        data() {
+            return {
+                name: 'liu'
+            }
+        },
+        created() {
+            console.log(this.name)
+        }
+    })
+    Vue.component('myName', {
+        template: `<h2>My name is </h2>`,
+        data() {
+            return {
+            }
+        },
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "liu"
+        }
+    })
+</script>
+
+</html>
